@@ -1,0 +1,12 @@
+{
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ],
+  "name": "Remix Discovery OS v1.0 - White Spatial Interface",
+  "description": "Discovery OS v1.0 - White Edition. A generative UI operating system with gesture-controlled spatial information in a light neutral theme.",
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

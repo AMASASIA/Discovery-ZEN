@@ -1,0 +1,134 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile information",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "displayName": { "type": "string" },
+        "email": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "lastLoginAt": { "type": "string" }
+      },
+      "required": ["userId", "displayName", "email", "createdAt"]
+    },
+    "SavedSpatialNode": {
+      "title": "SavedSpatialNode",
+      "description": "User saved spatial node data in 3D discovery space",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "nodeId": { "type": "string" },
+        "title": { "type": "string" },
+        "sector": { "type": "string" },
+        "summary": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["userId", "nodeId", "title", "sector"]
+    },
+    "UserSpatialNode": {
+      "title": "UserSpatialNode",
+      "description": "User created or spawned 3D spatial node",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "nodeId": { "type": "string" },
+        "code": { "type": "string" },
+        "title": { "type": "string" },
+        "sector": { "type": "string" },
+        "category": { "type": "string" },
+        "summary": { "type": "string" },
+        "details": { "type": "string" },
+        "source": { "type": "string" },
+        "status": { "type": "string" },
+        "r": { "type": "number" },
+        "theta": { "type": "number" },
+        "phi": { "type": "number" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["userId", "nodeId", "title", "sector"]
+    },
+    "ViewedNode": {
+      "title": "ViewedNode",
+      "description": "History of nodes viewed by user in 3D scene",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "nodeId": { "type": "string" },
+        "viewedAt": { "type": "string" }
+      },
+      "required": ["userId", "nodeId", "viewedAt"]
+    },
+    "SearchHistory": {
+      "title": "SearchHistory",
+      "description": "Recent query searched by user in navigation HUD",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "query": { "type": "string" },
+        "searchedAt": { "type": "string" }
+      },
+      "required": ["userId", "query", "searchedAt"]
+    },
+    "MemoriaLog": {
+      "title": "MemoriaLog",
+      "description": "Self-reflection, lesson learned, or conceptual log",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "lessonId": { "type": "string" },
+        "title": { "type": "string" },
+        "takeaway": { "type": "string" },
+        "category": { "type": "string" },
+        "actionPlan": { "type": "string" },
+        "loggedAt": { "type": "string" }
+      },
+      "required": ["userId", "lessonId", "title", "loggedAt"]
+    },
+    "ChatMessage": {
+      "title": "ChatMessage",
+      "description": "Gemini chatbot conversation message",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "role": { "type": "string", "enum": ["user", "model"] },
+        "text": { "type": "string" },
+        "modelName": { "type": "string" },
+        "timestamp": { "type": "string" }
+      },
+      "required": ["userId", "role", "text", "timestamp"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profile document"
+    },
+    "/users/{userId}/saved_nodes/{nodeDocId}": {
+      "schema": "SavedSpatialNode",
+      "description": "User saved spatial nodes subcollection"
+    },
+    "/users/{userId}/user_nodes/{nodeDocId}": {
+      "schema": "UserSpatialNode",
+      "description": "User spawned or customized spatial nodes subcollection"
+    },
+    "/users/{userId}/viewed_nodes/{nodeDocId}": {
+      "schema": "ViewedNode",
+      "description": "User viewed nodes tracking subcollection"
+    },
+    "/users/{userId}/search_history/{historyDocId}": {
+      "schema": "SearchHistory",
+      "description": "User search query history subcollection"
+    },
+    "/users/{userId}/memoria_logs/{lessonDocId}": {
+      "schema": "MemoriaLog",
+      "description": "User memoria experience and lessons subcollection"
+    },
+    "/users/{userId}/chat_messages/{messageId}": {
+      "schema": "ChatMessage",
+      "description": "User Gemini chat conversation messages"
+    }
+  }
+}
